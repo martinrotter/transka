@@ -15,6 +15,11 @@ PASSWORD=
 SLUG_PROJECT=
 SLUG_RESOURCE=
 
+# Check for existence of all dependencies
+check_deps() {
+	
+}
+
 # Stores internally project slug.
 #
 # Arguments:
@@ -42,29 +47,36 @@ set_credentials() {
 }
 
 # Downloads and returns raw text of resource.
+#
+# Arguments:
+# $1 - destination file path
 download_resource() {
 	curl \
-		-i -L --user "$USERNAME":"$PASSWORD" \
+		-L --user "$USERNAME":"$PASSWORD" \
+		-o "$1" \
 		-X GET "$BASE_API/project/$SLUG_PROJECT/resource/$SLUG_RESOURCE/content/?mode=default&file"
 }
 
 # Uploads new raw resource content.
 #
 # Arguments:
-# $1 - raw resource content (not file path)
+# $1 - file path to source resource
 upload_resource() {
 	curl \
-		-i -L --user "$USERNAME":"$PASSWORD" \
-		-X PUT "$BASE_API/project/$SLUG_PROJECT/resource/$SLUG_RESOURCE/content/?mode=default&file"
+		-L --user "$USERNAME":"$PASSWORD" \
+		-X PUT -F "file=@$1" \
+		-H "Content-Type: multipart/form-data" "$BASE_API/project/$SLUG_PROJECT/resource/$SLUG_RESOURCE/content/"
 }
 
-# Downloads and returns raw text of translation.
+# Downloads and translation.
 #
 # Arguments:
 # $1 - translation code (e.g. "cs_CZ")
+# $2 - destination file path
 download_translation() {
 	curl \
-		-i -L --user "$USERNAME":"$PASSWORD" \
+		-L --user "$USERNAME":"$PASSWORD" \
+		-o "$2" \
 		-X GET "$BASE_API/project/$SLUG_PROJECT/resource/$SLUG_RESOURCE/translation/$1/?mode=default&file"
 }
 
@@ -72,6 +84,10 @@ download_translation() {
 #
 # Arguments:
 # $1 - translation code (e.g. "cs_CZ")
+# $2 - path to translation file
 upload_translation() {
-	echo $1
+	curl \
+		-L --user "$USERNAME":"$PASSWORD" \
+		-X PUT -F "file=@$2" \
+		-H "Content-Type: multipart/form-data" "$BASE_API/project/$SLUG_PROJECT/resource/$SLUG_RESOURCE/translation/$1/"
 }

@@ -10,6 +10,8 @@
 EXIT_SUCCESS=0
 EXIT_FAILURE=1
 
+
+
 # Load functions.
 source common/functions.sh
 
@@ -17,4 +19,7 @@ set_project_slug "rssguard"
 set_resource_slug "rssguard"
 set_credentials "" ""
 
-download_resource
+#download_translation "cs_CZ" "res.ts"
+#download_resource "res.aaa"
+#upload_translation "cs_CZ" "$1"
+#upload_resource "$1"

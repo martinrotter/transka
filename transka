@@ -1,0 +1,20 @@
+#!/bin/bash
+
+## transka - (Very) simple BASH script which allows its user to operate with Transifex translations.
+## 
+## license: GNU GPLv3
+## author: Martin Rotter
+
+
+# System constants.
+EXIT_SUCCESS=0
+EXIT_FAILURE=1
+
+# Load functions.
+source common/functions.sh
+
+set_project_slug "rssguard"
+set_resource_slug "rssguard"
+set_credentials "" ""
+
+download_resource

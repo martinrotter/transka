@@ -10,14 +10,21 @@
 BASE_API="https://www.transifex.com/api/2"
 
 # Variables.
-USERNAME=
-PASSWORD=
-SLUG_PROJECT=
-SLUG_RESOURCE=
+declare USERNAME
+declare PASSWORD
+declare SLUG_PROJECT
+declare SLUG_RESOURCE
 
-# Check for existence of all dependencies
+# Check for existence of all dependencies.
+#
+# Returns EXIT_SUCCESS if all run-time dependencies are met,
+# otherwise returns non-zero result.
 check_deps() {
-	
+  which curl > /dev/null 2>&1
+}
+
+get_dependencies_names() {
+  echo "curl"
 }
 
 # Stores internally project slug.

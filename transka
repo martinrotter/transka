@@ -10,16 +10,23 @@
 EXIT_SUCCESS=0
 EXIT_FAILURE=1
 
-
-
 # Load functions.
 source common/functions.sh
+
+# Check for existence of dependencies like curl.
+check_deps
+
+if [[ $? != $EXIT_SUCCESS ]]; then
+  echo "Dependencies not installed correctly. Dependencies are: $(get_dependencies_names)"
+  exit $EXIT_FAILURE
+fi
+
 
 set_project_slug "rssguard"
 set_resource_slug "rssguard"
 set_credentials "" ""
 
-#download_translation "cs_CZ" "res.ts"
-#download_resource "res.aaa"
+download_translation "cs_CZ" "res.ts"
+download_resource "res.aaa"
 #upload_translation "cs_CZ" "$1"
 #upload_resource "$1"

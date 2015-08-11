@@ -29,6 +29,12 @@ if [[ $# == 1 && ($1 == "--help" || $1 == "-h") ]]; then
   echo "  -ur INPUT_FILE - uploads resource from given file"
   echo "  -dt TRANSLATION_CODE OUTPUT_FILE - downloads translation with given country code into destination file"
   echo "  -ut TRANSLATION_CODE INPUT_FILE - uploads translation with given country code from given file"
+  echo ""
+  echo "Examples:"
+  echo "a) Uploads new resource file and downloads existing translation file."
+  echo "  transka -u \"mark\" -p \"pass\""
+  echo "          -ps \"cute-project\" -rs \"project-translations\""
+  echo "          -dr \"resource.ts\" -dt \"en_GB\" \"en-gb.ts\""
   exit $EXIT_SUCCESS
 fi
 

@@ -165,11 +165,7 @@ fi
 PARAM_ITER=1
 PARAM_COUNT=$#
 
-echo $PARAM_COUNT
-
 until [ $PARAM_ITER -gt $PARAM_COUNT ]; do
-  echo $PARAM_ITER
-
   case ${!PARAM_ITER} in
     -u)
       ((PARAM_ITER++))
